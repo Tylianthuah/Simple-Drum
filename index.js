@@ -3,11 +3,13 @@ for (var i = 0; i < total; i++) {
   document.querySelectorAll('.drum')[i].addEventListener('click', function () {
     var buttonClicked = this.innerHTML;
     playSound(buttonClicked);
+    keyPressed(buttonClicked);
   });
 }
 
 document.addEventListener('keydown', function (event) {
   playSound(event.key);
+  keyPressed(event.key);
 });
 
 function playSound(key) {
@@ -50,4 +52,11 @@ function playSound(key) {
     default:
       console.log('No sound matches');
   }
+}
+
+function keyPressed(button) {
+  document.querySelector('.' + button).classList.add('pressed');
+  setTimeout(function () {
+    document.querySelector('.' + button).classList.remove('pressed');
+  }, 100);
 }
